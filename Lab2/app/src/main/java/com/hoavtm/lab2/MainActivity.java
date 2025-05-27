@@ -1,72 +1,53 @@
 package com.hoavtm.lab2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.Random;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-    // Khai bao bien: view nao khai bao field do
-//    TextView tvNoidung;
-//    Button btnClick;
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        EdgeToEdge.enable(this);
-//        setContentView(R.layout.activity_main);
-//
-//        // anh xa
-//        // R == resources, want to get id => id, want to get layout => layout
-//        tvNoidung = (TextView) findViewById(R.id.textViewNoidung); // access the variable - must always cast type
-//        btnClick = (Button) findViewById(R.id.buttonClick);
-//
-//        // viet code
-//        btnClick.setOnClickListener(new View.OnClickListener() { // bat su kien click button
-//            @Override
-//            public void onClick(View view) {
-//                tvNoidung.setText("Lập trình Android"); // set value for variable
-//            }
-//        });
-//    }
-
-    EditText editTextMin;
-    int min;
-    EditText editTextMax;
-    int max;
-    Button btnRandom;
-    TextView textViewResult;
-    int result;
-    Random random = new Random();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_main);
 
-        editTextMin = (EditText) findViewById(R.id.etMin);
-        editTextMax = (EditText) findViewById(R.id.etMax);
+        // Get references to the buttons
+        Button buttonMain1 = findViewById(R.id.button_main1);
+        Button buttonMain2 = findViewById(R.id.button_main2);
+        Button buttonMain3 = findViewById(R.id.button_main3);
 
-        btnRandom = (Button) findViewById(R.id.buttonRandom);
-        textViewResult = (TextView) findViewById(R.id.tvResult);
-
-        btnRandom.setOnClickListener(new View.OnClickListener() {
+        // Set OnClickListener for each button
+        buttonMain1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                min = Integer.parseInt(editTextMin.getText().toString()); // onClick ms get value and parse
-                max = Integer.parseInt((editTextMax).getText().toString());
-                result = random.nextInt((max - min) + 1) + min;
-                textViewResult.setText("" + result);
+            public void onClick(View v) {
+                // Create an Intent to start MainActivity1a
+                Intent intent = new Intent(MainActivity.this, MainActivity1.class);
+                startActivity(intent); // Start the new activity
+            }
+        });
+
+        buttonMain2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+                startActivity(intent);
+            }
+        });
+
+        buttonMain3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SignInActivity.class);
+                startActivity(intent);
             }
         });
     }
-
-
 }
