@@ -1,0 +1,13 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+    <Button android:id="@+id/button_main1" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="1. Simple ListView" android:layout_marginBottom="16dp"/>
+    <Button android:id="@+id/button_main2" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="2. Fruit List" android:layout_marginBottom="16dp"/>
+</LinearLayout>
