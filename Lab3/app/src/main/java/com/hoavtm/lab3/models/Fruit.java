@@ -4,11 +4,20 @@ public class Fruit {
     private String name;
     private String description;
     private int image;
+    private String imageUri;
 
     public Fruit(String name, String description, int image) {
         this.name = name;
         this.description = description;
         this.image = image;
+        this.imageUri = null;
+    }
+
+    public Fruit(String name, String description, String imageUri) {
+        this.name = name;
+        this.description = description;
+        this.imageUri = imageUri;
+        this.image = 0;
     }
 
     public String getName() {
@@ -33,5 +42,13 @@ public class Fruit {
 
     public void setImage(int image) {
         this.image = image;
+    }
+
+    public String getImageUri() {
+        return imageUri;
+    }
+
+    public void setImageUri(String imageUri) {
+        this.imageUri = imageUri;
     }
 }

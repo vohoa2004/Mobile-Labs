@@ -59,7 +59,11 @@ public class FruitAdapter extends BaseAdapter {
 
         tvName.setText(fruit.getName());
         tvDescription.setText(fruit.getDescription());
-        ivThumbnail.setImageResource(fruit.getImage());
+        if (fruit.getImageUri() != null && !fruit.getImageUri().isEmpty()) {
+            ivThumbnail.setImageURI(android.net.Uri.parse(fruit.getImageUri()));
+        } else {
+            ivThumbnail.setImageResource(fruit.getImage());
+        }
 
         if (i == selectedPosition) {
             view.setBackgroundColor(Color.parseColor("#FFE082"));

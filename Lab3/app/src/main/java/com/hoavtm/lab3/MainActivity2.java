@@ -2,6 +2,8 @@ package com.hoavtm.lab3;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +23,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 
 import com.hoavtm.lab3.models.Fruit;
 
@@ -36,6 +40,13 @@ public class MainActivity2 extends AppCompatActivity {
 
     String[] imageNames = {"banana", "apple", "orange"};
     int[] imageIds = {R.drawable.banana, R.drawable.apple, R.drawable.orange};
+
+    private Uri selectedImageUri = null;
+    private ImageView imgPreviewDialog = null;
+    private boolean isEditDialog = false;
+    private int editingPosition = -1;
+
+    private ActivityResultLauncher<Intent> pickImageLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +103,18 @@ public class MainActivity2 extends AppCompatActivity {
             }
         });
 
+        pickImageLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                    Uri imageUri = result.getData().getData();
+                    if (imageUri != null && imgPreviewDialog != null) {
+                        selectedImageUri = imageUri;
+                        imgPreviewDialog.setImageURI(imageUri);
+                    }
+                }
+            }
+        );
     }
 
     private void map() {
@@ -103,6 +126,9 @@ public class MainActivity2 extends AppCompatActivity {
     }
 
     private void showFruitDialog(String title, boolean isEdit) {
+        isEditDialog = isEdit;
+        editingPosition = vitri;
+        selectedImageUri = null;
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity2.this);
         builder.setTitle(title);
 
@@ -110,6 +136,8 @@ public class MainActivity2 extends AppCompatActivity {
         EditText edtName = view.findViewById(R.id.edtName);
         EditText edtDescription = view.findViewById(R.id.edtDescription);
         Spinner spnImage = view.findViewById(R.id.spnImage);
+        imgPreviewDialog = view.findViewById(R.id.imgPreview);
+        Button btnPickImage = view.findViewById(R.id.btnPickImage);
 
         ArrayAdapter<String> spnAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, imageNames);
         spnAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -125,7 +153,21 @@ public class MainActivity2 extends AppCompatActivity {
                     break;
                 }
             }
+            if (fruit.getImageUri() != null && !fruit.getImageUri().isEmpty()) {
+                imgPreviewDialog.setImageURI(Uri.parse(fruit.getImageUri()));
+                selectedImageUri = Uri.parse(fruit.getImageUri());
+            } else {
+                imgPreviewDialog.setImageResource(fruit.getImage());
+            }
+        } else {
+            imgPreviewDialog.setImageResource(imageIds[0]);
         }
+
+        btnPickImage.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_PICK);
+            intent.setType("image/*");
+            pickImageLauncher.launch(intent);
+        });
 
         builder.setView(view);
 
@@ -140,9 +182,19 @@ public class MainActivity2 extends AppCompatActivity {
                     Fruit fruit = arrayFruit.get(vitri);
                     fruit.setName(name);
                     fruit.setDescription(description);
-                    fruit.setImage(imgRes);
+                    if (selectedImageUri != null) {
+                        fruit.setImageUri(selectedImageUri.toString());
+                        fruit.setImage(0);
+                    } else {
+                        fruit.setImage(imgRes);
+                        fruit.setImageUri(null);
+                    }
                 } else {
-                    arrayFruit.add(new Fruit(name, description, imgRes));
+                    if (selectedImageUri != null) {
+                        arrayFruit.add(new Fruit(name, description, selectedImageUri.toString()));
+                    } else {
+                        arrayFruit.add(new Fruit(name, description, imgRes));
+                    }
                 }
 
                 vitri = -1;
