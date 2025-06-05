@@ -34,12 +34,12 @@ public class DrinkActivity extends AppCompatActivity {
         recyclerViewDrinks.setLayoutManager(new LinearLayoutManager(this));
 
         drinkList = new ArrayList<>();
-        drinkList.add(new Drink("Heineken", "Không say không về", R.drawable.heineken, 50000));
-        drinkList.add(new Drink("Pepsi", "Đã quá pepsi ơi", R.drawable.pepsi, 20000));
-        drinkList.add(new Drink("Bia Sài Gòn", "Sài gòn têy", R.drawable.saigon, 300000));
-        drinkList.add(new Drink("Bia Tiger", "Chúa tể rừng xanh", R.drawable.biatiger, 35000));
+        drinkList.add(new Drink("Nước suối Lavie", "Thanh mát tự nhiên", R.drawable.lavie, 5000));
+        drinkList.add(new Drink("Pepsi", "Đã quá pepsi ơi", R.drawable.pepsi, 10000));
+        drinkList.add(new Drink("7Up", "Bảy Up", R.drawable.sevenup, 10000));
+        drinkList.add(new Drink("Boncha", "Trà chanh mật ong", R.drawable.boncha, 12000));
         drinkList.add(new Drink("Cocacola", "Cô ca cô la", R.drawable.coca, 15000));
-        drinkList.add(new Drink("Bia 333", "Uống xong la", R.drawable.bia333, 18000));
+        drinkList.add(new Drink("Sữa Vinamilk", "Thơm ngon, bổ dưỡng", R.drawable.vinamilk, 10000));
 
         drinkAdapter = new DrinkAdapter(drinkList);
         recyclerViewDrinks.setAdapter(drinkAdapter);

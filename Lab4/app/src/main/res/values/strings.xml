@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Lab4</string>
+    <string name="result_title">Result Information</string>
+    <string name="back">Back</string>
+
+    <string name="result_string">String: %1$s</string>
+    <string name="result_int">Integer: %1$d</string>
+    <string name="result_array">Array: %1$s</string>
+    <string name="result_bundle">Bundle: Name: %1$s, Id: %2$d </string>
+    <string name="result_object">User Object - Name: %1$s, Age: %2$d</string>
 </resources>

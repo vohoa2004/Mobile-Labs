@@ -36,12 +36,12 @@ public class FoodActivity extends AppCompatActivity {
         recyclerViewFood.setLayoutManager(new LinearLayoutManager(this));
 
         foodList = new ArrayList<>();
-        foodList.add(new Food("Cánh gà chiên nước mắm", "Vị giác bùng nổ", R.drawable.canh_ga_chien_nuoc_mam, 120000));
-        foodList.add(new Food("Heo quay", "Giòn đến miếng cuối cùng", R.drawable.heo_quay, 220000));
-        foodList.add(new Food("Rau muống xào tỏi", "Hương vị của miền quê", R.drawable.rau_muong_xao_toi, 60000));
-        foodList.add(new Food("Vịt rang muối", "Muối ngon hơn vịt", R.drawable.vit_rang_muoi, 1150000));
-        foodList.add(new Food("Phở Hà Nội", "Hà Nội không vội được đâu", R.drawable.pho_bo, 30000));
-        foodList.add(new Food("Bún Bò Huế", "Chuẩn vị Huế", R.drawable.bun_bo_hue, 35000));
+        foodList.add(new Food("Bún riêu", "Thơm ngon tròn vị", R.drawable.bun_rieu, 50000));
+        foodList.add(new Food("Gỏi cuốn", "Thanh mát tươi ngon", R.drawable.goi_cuon, 30000));
+        foodList.add(new Food("Gỏi đu đủ", "Chua cay bùng vị", R.drawable.goi_du_du, 25000));
+        foodList.add(new Food("Hủ tiếu mực", "Ngọt thanh từ mực", R.drawable.hu_tieu_muc, 45000));
+        foodList.add(new Food("Há cảo hấp", "Điểm tâm tinh tế", R.drawable.ha_cao, 30000));
+        foodList.add(new Food("Bánh mỳ thập cẩm", "Đỉnh của chóp", R.drawable.banh_mi, 35000));
 
         foodAdapter = new FoodAdapter(foodList);
         recyclerViewFood.setAdapter(foodAdapter);
@@ -52,7 +52,7 @@ public class FoodActivity extends AppCompatActivity {
                 HashSet<Food> selectedFoods = foodAdapter.getSelectedFoods();
                 ArrayList<String> selectedFoodNames = new ArrayList<>();
                 ArrayList<Integer> selectedFoodPrices = new ArrayList<>();
-                // Chuyển đổi HashSet thành ArrayList
+
                 for (Food food : selectedFoods) {
                     selectedFoodNames.add(food.getName());
                     selectedFoodPrices.add(food.getPrice());

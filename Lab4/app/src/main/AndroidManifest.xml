@@ -13,7 +13,16 @@
         android:theme="@style/Theme.Lab4"
         tools:targetApi="31">
         <activity
-            android:name=".SignInActivity"
+            android:name=".DataTransferResultActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TransferDataActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AndroidLifeCycleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".FoodActivity"
@@ -22,7 +31,7 @@
             android:name=".DrinkActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".IntroActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
