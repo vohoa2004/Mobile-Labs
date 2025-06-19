@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/textThem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Them Cong Viec"
+        android:textColor="#F44336"
+        android:textSize="30sp"
+        android:textStyle="bold"/>
+    <EditText
+        android:id="@+id/editTextTenCV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textThem"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:id="@+id/buttonThem"
+        android:layout_width="191dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextTenCV"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="47dp"
+        android:layout_marginTop="35dp"
+        android:text="Them" />
+
+    <Button
+        android:id="@+id/buttonHuy"
+        android:layout_width="192dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonThem"
+        android:layout_alignStart="@+id/buttonThem"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="21dp"
+        android:text="Huy" />
+
+</RelativeLayout>
